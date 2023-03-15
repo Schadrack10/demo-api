@@ -1,4 +1,6 @@
 const express = require("express");
+const bodyParser = require('body-parser')
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const app = express();
 const PORT = 3000;
 
@@ -24,11 +26,11 @@ const data = [
 ];
 
 
-app.get("/people", (req, res) => {
+app.get("/people",urlencodedParser, (req, res) => {
   res.send(data);
 });
 
-app.get("/people/:id", (req, res) => {
+app.get("/people/:id",urlencodedParser, (req, res) => {
 
   const findPerson = data.filter((person)=> person.id == req.params.id )
 
